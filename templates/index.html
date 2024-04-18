@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block  title %}首页{% endblock %}
+{% block main %}
+    <h1>博客列表</h1>
+    <div class="row row-cols-2 row-gap-4">
+        <div class="col">
+            <div class="card text-center">
+                <div class="card-header">
+                    <a href="#">Django零基础到实战</a>
+                </div>
+                <div class="card-body" style="height: 100px;">
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                </div>
+                <div class="card-footer text-body-secondary d-flex justify-content-between">
+                    <div>
+                        <img src="{% static 'image/avatar.webp' %}" class="rounded-circle" width="30" height="30">
+                        课堂
+                    </div>
+                    <div>
+                        发布时间:2024年4月18日8:00:00
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card text-center">
+                <div class="card-header">
+                    <a href="#">Django零基础到实战</a>
+                </div>
+                <div class="card-body" style="height: 100px;">
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                </div>
+                <div class="card-footer text-body-secondary d-flex justify-content-between">
+                    <div>
+                        <img src="{% static 'image/avatar.webp' %}" class="rounded-circle" width="30" height="30">
+                        课堂
+                    </div>
+                    <div>
+                        发布时间:2024年4月18日8:00:00
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
