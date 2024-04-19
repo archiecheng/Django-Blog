@@ -39,3 +39,11 @@ class RegisterForm(forms.Form):
         captcha_model.delete()
         return captcha
 
+
+class LoginForm(forms.Form):
+    email = forms.EmailField(error_messages={
+        'required': '请传入邮箱',
+        'invalid': '请传入一个正确的邮箱'
+    })
+    password = forms.CharField(max_length=20, min_length=4)
+    remember = forms.IntegerField(required=False)

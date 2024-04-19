@@ -5,6 +5,7 @@
     <div style="max-width: 330px;" class="m-auto">
         <h1>登录</h1>
         <form action="" method="POST">
+            {% csrf_token %}
             <div class="mb-3">
                 <label>邮箱</label>
                 <input type="email" class="form-control" placeholder="邮箱" name="email">
