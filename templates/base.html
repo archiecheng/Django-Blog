@@ -22,9 +22,9 @@
                 <li><a href="{% url 'blog:pub_blog' %}" class="nav-link px-2 text-secondary">发布博客</a></li>
             </ul>
 
-            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" action="{% url 'blog:search' %}" method="GET">
                 <input type="search" class="form-control" placeholder="搜索..."
-                       aria-label="Search">
+                       aria-label="Search" name="q">
             </form>
             {% if user.is_authenticated %}
                 <div class="dropdown text-end">
