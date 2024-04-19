@@ -35,6 +35,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'blog',
+    'myauth'
 ]
 
 MIDDLEWARE = [
@@ -74,8 +76,10 @@ WSGI_APPLICATION = 'PersonalBlog.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'OPTIONS':{
+            'read_default_file': 'my.cnf'
+        }
     }
 }
 
@@ -120,3 +124,13 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.qq.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = '1804528105@qq.com'
+EMAIL_HOST_PASSWORD = 'jeqglmnggtkqefcg'
+DEFAULT_FROM_EMAIL = '1804528105@qq.com'
+
+LOGIN_URL = '/auth/login'

@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 {% block title %}注册{% endblock %}
+{% block head %}
+    <script src="{% static 'jquery/jquery-3.7.1.min.js' %}"></script>
+    <script src="{% static 'js/register.js' %}"></script>
+{% endblock %}
 {% block main %}
     <div style="max-width: 330px;" class="m-auto">
         <h1>注册</h1>
@@ -17,7 +21,7 @@
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="验证码"
                            aria-label="Recipient's username" aria-describedby="basic-addon2">
-                    <button class="btn btn-outline-secondary" type="button">获取验证码</button>
+                    <button class="btn btn-outline-secondary" type="button" id="captcha-btn">获取验证码</button>
                 </div>
             </div>
             <div class="mb-3">
