@@ -1,4 +1,4 @@
-window.onload = function () {
+$(function () {
     function bindCaptchaBtnClick() {
         $("#captcha-btn").click(function (event) {
             let $this = $(this);
@@ -10,17 +10,17 @@ window.onload = function () {
             // 取消按钮的点击事件
             $this.off('click');
             // 发送 ajax 请求
-            $.ajax('/auth/captcha?email' + email, {
-                method:'GET',
-                success:function (result){
-                    if (result['code'] == 200){
-                        alert("验证码发送成功")
-                    } else {
-                        alert(result['message'])
+            $.ajax('/auth/captcha?email='+email, {
+                method: 'GET',
+                success: function(result){
+                    if(result['code'] == 200){
+                        alert("验证码发送成功！");
+                    }else{
+                        alert(result['message']);
                     }
                 },
-                fail:function (error){
-                    console.log(error)
+                fail: function (error){
+                    console.log(error);
                 }
             })
             // 倒计时
@@ -40,5 +40,6 @@ window.onload = function () {
             }, 1000)
         })
     }
+
     bindCaptchaBtnClick();
-}
+})
