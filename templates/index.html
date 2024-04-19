@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
-{% block  title %}首页{% endblock %}
+{% block  title %}Home{% endblock %}
 {% block main %}
-    <h1>博客列表</h1>
+    <h1>Blog Lists</h1>
     <div class="row row-cols-2 row-gap-4">
     {% for blog in blogs %}
         <div class="col">
@@ -18,7 +18,7 @@
                         {{ blog.author.username }}
                     </div>
                     <div>
-                        发布时间:{{ blog.pub_time | date:"Y年m月d日 h时i分" }}
+                        PubDate:{{ blog.pub_time | date:"Y year m month d day h hour i minute" }}
                     </div>
                 </div>
             </div>

@@ -42,13 +42,13 @@ def pub_comment(request):
     blog_id = request.POST.get('blog_id')
     content = request.POST.get('content')
     BlogComment.objects.create(content=content, blog_id=blog_id, author=request.user)
-    # 重新加载博客详情页
+    # Reload blog details page
     return redirect(reverse("blog:blog_detail", kwargs={"blog_id":blog_id}))
 
 @require_GET
 def search(request):
     # search?q=xxx
     q = request.GET.get('q')
-    # 从博客的标题和内容中查找包含关键字
+    # Find keywords contained in the title and content of the blog
     blogs = Blog.objects.filter(Q(title__icontains=q) | Q(content__icontains=q)).all()
     return render(request, "index.html",context={"blogs":blogs})

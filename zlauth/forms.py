@@ -11,13 +11,13 @@ from .models import  CaptchaModel
 User = get_user_model()
 class RegisterForm(forms.Form):
     username = forms.CharField(max_length=20, min_length=2, error_messages={
-        'required': '请传入用户名',
-        'max_length': '用户名长度在2~20之间',
-        'min_length': '用户名长度在2~20之间'
+        'required': 'Please enter username',
+        'max_length': 'Username length is between 2 and 20',
+        'min_length': 'Username length is between 2 and 20'
     })
     email = forms.EmailField(error_messages={
-        'required': '请传入邮箱',
-        'invalid': '请传入一个正确的邮箱'
+        'required': 'Please enter your email',
+        'invalid': 'Please enter a correct email address'
     })
     captcha = forms.CharField(max_length=4, min_length=4)
     password = forms.CharField(max_length=20, min_length=4)
@@ -26,7 +26,7 @@ class RegisterForm(forms.Form):
         email = self.cleaned_data.get('email')
         exists = User.objects.filter(email=email).exists()
         if exists:
-            raise forms.ValidationError('邮箱已经被注册!')
+            raise forms.ValidationError('The email address has been registered!')
         return email
 
 
@@ -35,15 +35,15 @@ class RegisterForm(forms.Form):
         email = self.cleaned_data.get('email')
         captcha_model = CaptchaModel.objects.filter(email=email, captcha=captcha).first()
         if not captcha_model:
-            raise forms.ValidationError('验证码和邮箱不匹配')
+            raise forms.ValidationError('Verification code and email address do not match')
         captcha_model.delete()
         return captcha
 
 
 class LoginForm(forms.Form):
     email = forms.EmailField(error_messages={
-        'required': '请传入邮箱',
-        'invalid': '请传入一个正确的邮箱'
+        'required': 'Please enter your email',
+        'invalid': 'Please enter a correct email address'
     })
     password = forms.CharField(max_length=20, min_length=4)
     remember = forms.IntegerField(required=False)

@@ -1,36 +1,36 @@
 {% extends 'base.html' %}
-{% block title %}注册{% endblock %}
+{% block title %}Register{% endblock %}
 {% block head %}
     <script src="{% static 'jquery/jquery-3.7.1.min.js' %}"></script>
     <script src="{% static 'js/register.js' %}"></script>
 {% endblock %}
 {% block main %}
     <div style="max-width: 330px;" class="m-auto">
-        <h1>注册</h1>
+        <h1>Register</h1>
         <form action="" method="POST">
             {% csrf_token %}
             <div class="mb-3">
-                <label>用户名</label>
-                <input type="text" class="form-control" placeholder="用户名" name="username">
+                <label>Username</label>
+                <input type="text" class="form-control" placeholder="Username" name="username">
             </div>
             <div class="mb-3">
-                <label>邮箱</label>
-                <input type="email" name="email" class="form-control" placeholder="邮箱">
+                <label>Email</label>
+                <input type="email" name="email" class="form-control" placeholder="Email">
             </div>
             <div class="mb-3">
-                <label>验证码</label>
+                <label>Captcha</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="验证码"
+                    <input type="text" class="form-control" placeholder="Captcha"
                            aria-label="Recipient's username" aria-describedby="basic-addon2" name="captcha">
-                    <button class="btn btn-outline-secondary" type="button" id="captcha-btn">获取验证码</button>
+                    <button class="btn btn-outline-secondary" type="button" id="captcha-btn">get captcha</button>
                 </div>
             </div>
             <div class="mb-3">
-                <label>密码</label>
-                <input type="password" class="form-control" placeholder="密码" name="password">
+                <label>Password</label>
+                <input type="password" class="form-control" placeholder="Password" name="password">
             </div>
             <div class="mb-3">
-                <button class="btn btn-primary w-100">立即注册</button>
+                <button class="btn btn-primary w-100">Register</button>
             </div>
         </form>
     </div>

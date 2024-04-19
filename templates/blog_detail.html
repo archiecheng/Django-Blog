@@ -11,8 +11,8 @@
     <div class="mt-2">
         <img src="{% static 'image/avatar.webp' %}" class="rounded-circle" width="30" height="30">
         <span class="ms-2">{{ blog.author.username }}</span>
-        <span class="ms-2">于</span>
-        <span class="ms-2">{{ blog.pub_time | date:"Y年mm月dd日 h时i分" }}</span>
+        <span class="ms-2">at</span>
+        <span class="ms-2">{{ blog.pub_time | date:"Y year mm month dd day h hour i minute" }}</span>
     </div>
     <hr>
     <div class="py-2">
@@ -20,15 +20,15 @@
     </div>
     <hr>
     <div class="mt-2">
-        <h3>评论({{ blog.comments.all | length }})</h3>
+        <h3>comments({{ blog.comments.all | length }})</h3>
         <form action="{% url 'blog:pub_comment' %}" method="POST">
             {% csrf_token %}
             <input type="hidden" name="blog_id" value="{{ blog.id }}">
             <div class="mt-2">
-                <input type="text" class="form-control" placeholder="请输入评论" name="content">
+                <input type="text" class="form-control" placeholder="Please enter comment" name="content">
             </div>
             <div class="text-end mt-2">
-                <button type="button" class="btn btn-primary">评论</button>
+                <button type="button" class="btn btn-primary">comment</button>
             </div>
         </form>
     </div>
@@ -42,7 +42,7 @@
                             <span class="ms-2">{{ comment.author.username }}</span>
                         </div>
                         <div class="create-time" style="line-height: 40px;">
-                            {{ comment.pub_time | date:"Y年mm月dd日 h时i分" }}
+                            {{ comment.pub_time | date:"Y year mm month dd day h hour i minute" }}
                         </div>
                     </div>
                     <div class="mt-2">

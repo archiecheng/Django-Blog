@@ -25,18 +25,19 @@ def zllogin(request):
             remember = form.cleaned_data.get('remember')
             user = User.objects.filter(email=email).first()
             if user and user.check_password(password):
-                # 登录
+                # login
                 login(request, user)
                 user.is_authenticated
-                # 判断是否需要记住我
+                # Determine whether you need to remember me
                 if not remember:
-                    # 如果没有点击记住我，那么就要设置过期时间为0，即浏览器关闭后就会过期
+                    # If you do not click Remember Me, then you need to set the expiration time to 0,
+                    # that is, it will expire after the browser is closed.
                     request.session.set_expiry(0)
-                # 如果点击了，那么就什么都不做，使用默认的2周的过期时间
+                # If clicked, do nothing and use the default expiration time of 2 weeks.
                 return redirect('/')
             else:
-                print('邮箱或密码错误！')
-                # form.add_error('email', '邮箱或者密码错误！')
+                print('Mail or password is incorrect!')
+                # form.add_error('email', 'Mail or password is incorrect!')
                 # return render(request, 'login.html', context={"form": form})
                 return redirect(reverse('zlauth:login'))
 
@@ -66,11 +67,11 @@ def send_email_captcha(request):
     # ?email=xxx
     email = request.GET.get('email')
     if not email:
-        return JsonResponse({"code": 400, "message": '必须传递邮箱！'})
-    # 生成验证码（取随机的4位阿拉伯数字）
+        return JsonResponse({"code": 400, "message": 'Email must be passed!'})
+    # Generate verification code (take a random 4-digit Arabic number)
     # ['0', '2', '9', '8']
     captcha = "".join(random.sample(string.digits, 4))
-    # 存储到数据库中
+    # Store in database
     CaptchaModel.objects.update_or_create(email=email, defaults={'captcha': captcha})
-    send_mail("知了博客注册验证码", message=f"您的注册验证码是：{captcha}", recipient_list=[email], from_email=None)
-    return JsonResponse({"code": 200, "message": "邮箱验证码发送成功！"})
+    send_mail("Blog registration verification code", message=f"Your registration verification code is：{captcha}", recipient_list=[email], from_email=None)
+    return JsonResponse({"code": 200, "message": "Email verification code sent successfully!"})
