@@ -37,10 +37,10 @@ def pub_blog(request):
             content = form.cleaned_data.get('content')
             category_id = form.cleaned_data.get('category')
             blog = Blog.objects.create(title=title, content=content, category_id=category_id, author=request.user)
-            return JsonResponse({"code": 200, "message": "博客发布成功！", "data": {"blog_id": blog.id}})
+            return JsonResponse({"code": 200, "message": "Publish Blog Successfully!", "data": {"blog_id": blog.id}})
         else:
             print(form.errors)
-            return JsonResponse({'code': 400, "message": "参数错误！"})
+            return JsonResponse({'code': 400, "message": "Parameter errors"})
 
 
 @require_POST
@@ -49,7 +49,7 @@ def pub_comment(request):
     blog_id = request.POST.get('blog_id')
     content = request.POST.get('content')
     BlogComment.objects.create(content=content, blog_id=blog_id, author=request.user)
-    # 重新加载博客详情页
+    # reload blog details
     return redirect(reverse("blog:blog_detail", kwargs={'blog_id': blog_id}))
 
 
@@ -57,6 +57,6 @@ def pub_comment(request):
 def search(request):
     # /search?q=xxx
     q = request.GET.get('q')
-    # 从博客的标题和内容中查找含有q关键字的博客
+    # Find blogs containing the q keyword from their titles and content
     blogs = Blog.objects.filter(Q(title__icontains=q) | Q(content__icontains=q)).all()
     return render(request, 'index.html', context={"blogs": blogs})
