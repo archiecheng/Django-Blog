@@ -6,7 +6,7 @@ window.onload = function () {
         onChange(editor) {
             const html = editor.getHtml()
             console.log('editor content', html)
-            // 也可以同步到 <textarea>
+            // synthesize <textarea>
         }
     }
 
@@ -26,34 +26,28 @@ window.onload = function () {
         mode: 'default', // or 'simple'
     })
 
-    $("#submit-btn").click(function (event){
+    $("#submit-btn").click(function (event) {
         // 阻止按钮的默认行为
-        event.preventDefault()
-        let title = $("input[name='title']").val()
-        let category = $("#category-select").val()
-        let content = editor.getHtml()
-        let csrfmiddlewaretoken = $("input[name='csrfmiddlewaretoken']").val()
-        $.ajax(
-            '/blog/pub',
-            {
-                method:'POST',
-                data:{
-                    title,
-                    category,
-                    content,
-                    csrfmiddlewaretoken
-                },
-                success:function (result){
-                    if (result["code"] == 200){
-                        // 获取博客id
-                        let blog_id = result['data']['blog_id']
-                        // 跳转到博客详情页面
-                        window.location = '/blog/detail' + blog_id
-                    } else {
-                        alert(result['message'])
-                    }
+        event.preventDefault();
+
+        let title = $("input[name='title']").val();
+        let category = $("#category-select").val();
+        let content = editor.getHtml();
+        let csrfmiddlewaretoken = $("input[name='csrfmiddlewaretoken']").val();
+        $.ajax('/blog/pub', {
+            method: 'POST',
+            data: {title, category, content, csrfmiddlewaretoken},
+            success: function (result) {
+                if (result['code'] == 200) {
+                    // 获取博客id
+                    let blog_id = result['data']['blog_id']
+                    // 跳转到博客详情页面
+                    alert('/blog/detail/' + blog_id)
+                    window.location = '/blog/detail/' + blog_id
+                } else {
+                    alert(result['message']);
                 }
             }
-        )
-    })
+        })
+    });
 }

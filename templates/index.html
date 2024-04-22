@@ -1,28 +1,28 @@
 {% extends 'base.html' %}
-{% block  title %}Home{% endblock %}
+
+{% block title %}首页{% endblock %}
+
 {% block main %}
-    <h1>Blog Lists</h1>
+	<h1>博客列表</h1>
     <div class="row row-cols-2 row-gap-4">
     {% for blog in blogs %}
         <div class="col">
-            <div class="card text-center">
+            <div class="card">
                 <div class="card-header">
                     <a href="{% url 'blog:blog_detail' blog_id=blog.id %}">{{ blog.title }}</a>
                 </div>
                 <div class="card-body" style="height: 100px;">
-                    <p class="card-text">{{ blog.content | striptags | truncatechars:200 }}</p>
+                    <p class="card-text">{{ blog.content|striptags|truncatechars:200 }}</p>
                 </div>
                 <div class="card-footer text-body-secondary d-flex justify-content-between">
                     <div>
-                        <img src="{% static 'image/avatar.webp' %}" class="rounded-circle" width="30" height="30">
+                        <img src="{% static 'image/avatar.webp' %}" class="rounded-circle" width="30" height="30" alt="">
                         {{ blog.author.username }}
                     </div>
-                    <div>
-                        PubDate:{{ blog.pub_time | date:"Y year m month d day h hour i minute" }}
-                    </div>
+                    <div>发布时间：{{ blog.pub_time|date:"Y年m月d日 h时i分" }}</div>
                 </div>
             </div>
         </div>
-    </div>
     {% endfor %}
+    </div>
 {% endblock %}
