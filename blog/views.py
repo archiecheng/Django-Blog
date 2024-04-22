@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, HttpResponse
 from django.http.response import JsonResponse
 from django.urls.base import reverse_lazy
 from django.contrib.auth.decorators import login_required
