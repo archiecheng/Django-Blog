@@ -4,17 +4,17 @@ $(function () {
             let $this = $(this);
             let email = $("input[name='email']").val();
             if (!email) {
-                alert("请先输入邮箱");
+                alert("Please enter email");
                 return;
             }
-            // 取消按钮的点击事件
+            // Cancel button click event
             $this.off('click');
-            // 发送 ajax 请求
+            // Send ajax request
             $.ajax('/auth/captcha?email='+email, {
                 method: 'GET',
                 success: function(result){
                     if(result['code'] == 200){
-                        alert("验证码发送成功！");
+                        alert("Send Captcha Code successfully! ");
                     }else{
                         alert(result['message']);
                     }
@@ -23,14 +23,14 @@ $(function () {
                     console.log(error);
                 }
             })
-            // 倒计时
+            // Countdown
             let countdown = 10;
             let timer = setInterval(function () {
                 if (countdown <= 0) {
-                    $this.text('获取验证码');
-                    // 清掉定时器
+                    $this.text('get verification code');
+                    // clear timer
                     clearInterval(timer);
-                    // 重新绑定点击事件
+                    // Rebind click event
                     bindCaptchaBtnClick();
                 } else {
                     countdown--;

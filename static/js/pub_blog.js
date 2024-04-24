@@ -27,7 +27,7 @@ window.onload = function () {
     })
 
     $("#submit-btn").click(function (event) {
-        // 阻止按钮的默认行为
+        // Block button default behavior
         event.preventDefault();
 
         let title = $("input[name='title']").val();
@@ -39,10 +39,10 @@ window.onload = function () {
             data: {title, category, content, csrfmiddlewaretoken},
             success: function (result) {
                 if (result['code'] == 200) {
-                    // 获取博客id
+                    // Get blog id
                     let blog_id = result['data']['blog_id']
-                    // 跳转到博客详情页面
-                    alert('/blog/detail/' + blog_id)
+                    // Jump to blog details page
+                    // alert('/blog/detail/' + blog_id)
                     window.location = '/blog/detail/' + blog_id
                 } else {
                     alert(result['message']);
